@@ -16,9 +16,9 @@ for i in $logs
 #membersihkan cache
 service openvpn restart
 systemctl enable nodews
-systemctl start nodews
+systemctl restart nodews
 systemctl enable wsssl
-systemctl start wsssl
+systemctl restart wsssl
 apt-get clean && apt-get autoclean
 apt-get autoremove -y
 
