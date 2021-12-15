@@ -59,7 +59,8 @@ chmod +x /etc/systemd/system/wsssl.service
 clear
 
 wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
- 
+chmod +x /usr/bin/x
+
 rm -rf vpn auto
 bash x
 clear
