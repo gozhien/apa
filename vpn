@@ -7,6 +7,7 @@
 
 #ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
+apt -y install curl
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod 755 openvpn-install.sh
 ./openvpn-install.sh
@@ -29,7 +30,7 @@ User=nobody
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=node /etc/fas/proxy3.js -dhost 127.0.0.1 -dport 1194 -mport 80 -skip 1
+ExecStart=node /etc/fas/proxy3.js -dhost 127.0.0.1 -dport 1194 -mport 80 -skip 2
 Restart=on-failure
 RestartPreventExitStatus=1
 
@@ -47,7 +48,7 @@ User=nobody
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=node /etc/fas/proxy3.js -dhost 127.0.0.1 -dport 1194 -mport 443 -skip 1
+ExecStart=node /etc/fas/proxy3.js -dhost 127.0.0.1 -dport 1194 -mport 443 -skip 2
 Restart=on-failure
 RestartPreventExitStatus=1
 
