@@ -13,21 +13,24 @@ clear
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod 755 openvpn-install.sh
 
-export MENU_OPTION="1"
 export APPROVE_IP="y"
 export IPV6_SUPPORT="n"
 export PORT_CHOICE="1"
 export PROTOCOL_CHOICE="2"
 export DNS="11"
 export COMPRESSION_ENABLED="n"
-export CIPHER="AES-128-GCM"
-export CERT_TYPE="1" # ECDSA
-export CERT_CURVE="prime256v1"
-export CC_CIPHER="TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256"
-export DH_TYPE="2" # ECDH
-export DH_CURVE="prime256v1"
-export HMAC_ALG="SHA256"
-export TLS_SIG="2" # tls-crypt
+export CUSTOMIZE_ENC="y"
+export CIPHER_CHOICE="1"
+export CERT_TYPE="1"
+export CERT_CURVE_CHOICE="1"
+export RSA_KEY_SIZE_CHOICE="1"
+export CC_CIPHER_CHOICE="1"
+export DH_TYPE="1"
+export DH_CURVE_CHOICE="1"
+export DH_KEY_SIZE_CHOICE="1"
+export HMAC_ALG_CHOICE="1"
+export TLS_SIG="2"
+export CONTINUE="y"
 export CLIENT="fas"
 export PASS="1"
 ./openvpn-install.sh
