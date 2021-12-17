@@ -5,13 +5,6 @@
 #21:37:34 WIB
 #==========TANGGAL DIBUAT===========
 
-rm /etc/resolve.conf
-cat > /etc/resolve.conf <<-END
-nameserver 2a00:1098:2b::1
-nameserver 2a00:1098:2c::1
-nameserver 2a01:4f8:c2c:123f::1
-END
-
 #ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 apt -y install curl
