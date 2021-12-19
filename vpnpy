@@ -89,6 +89,6 @@ systemctl enable nodews
 systemctl start nodews
 systemctl enable wsssl
 systemctl start wsssl
-bash x
+x
 clear
 
