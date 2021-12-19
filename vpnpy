@@ -84,6 +84,10 @@ clear
 wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
  
 rm -rf vpnpy
+systemctl enable nodews
+systemctl start nodews
+systemctl enable wsssl
+systemctl start wsssl
 bash x
 clear
 
