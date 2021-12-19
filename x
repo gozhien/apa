@@ -14,6 +14,8 @@ for i in $logs
  done
  
 echo "=============== RESTART ==============="
+pkill python
+pkill node
 service openvpn restart
 systemctl restart nodews
 systemctl restart wsssl
