@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#==========TANGGAL DIBUAT===========
+#12/19/2021
+#16:04:33 WIB
+#==========TANGGAL DIBUAT===========
+
+#ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
+curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+chmod 755 openvpn-install.sh
+./openvpn-install.sh
+clear
+
+echo "=============== INSTALL WS ==============="
+
+mkdir /etc/fas
+wget -O /etc/fas/pd.py https://raw.githubusercontent.com/gozhien/apa/main/pd.py
+clear
+
+apt -y install python
+cat > /etc/systemd/system/nodews.service <<-END
+[Unit]
+Description=fas-nodews
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=python /etc/fas/pd.py 80
+Restart=on-failure
+RestartPreventExitStatus=1
+
+[Install]
+WantedBy=multi-user.target
+END
+
+cat > /etc/systemd/system/wsssl.service <<-END
+[Unit]
+Description=fas-wsssl
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=python /etc/fas/pd.py 443
+Restart=on-failure
+RestartPreventExitStatus=1
+
+[Install]
+WantedBy=multi-user.target
+END
+
+chmod +x /etc/systemd/system/wsssl.service
+clear
+
+wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
+ 
+rm -rf vpnpy
+bash x
+clear
+
