@@ -1,7 +1,7 @@
 import socket, threading, thread, select, signal, sys, time, getopt
 
 # Listen
-LISTENING_ADDR = '127.0.0.1'
+LISTENING_ADDR = '::'
 if sys.argv[1:]:
   LISTENING_PORT = sys.argv[1]
 else:
@@ -10,8 +10,8 @@ else:
 PASS = ''
 
 # CONST
-BUFLEN = 4096 * 4
-TIMEOUT = 60
+BUFLEN = 9096 * 4
+TIMEOUT = 90
 DEFAULT_HOST = '127.0.0.1:1194'
 RESPONSE = 'HTTP/1.1 101 <font color="purple">Yeeeey Akhirnya Bisa Connect</font>\r\nContent-length: 1048576000000\r\n\r\n'
 #RESPONSE = 'HTTP/1.1 200 Hello_World!\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'  # lint:ok
@@ -27,7 +27,7 @@ class Server(threading.Thread):
         self.logLock = threading.Lock()
 
     def run(self):
-        self.soc = socket.socket(socket.AF_INET)
+        self.soc = socket.socket(socket.AF_INET6)
         self.soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.soc.settimeout(2)
         intport = int(self.port)
