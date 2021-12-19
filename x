@@ -13,23 +13,22 @@ for i in $logs
      > $i
  done
  
-#membersihkan cache
+echo "=============== RESTART ==============="
 service openvpn restart
-systemctl enable nodews
 systemctl restart nodews
-systemctl enable wsssl
 systemctl restart wsssl
 apt-get clean && apt-get autoclean
 apt-get autoremove -y
 
-# Bersihkan semua file yang ada di tong sampah
+echo "=============== HAPUS TONG SAMPAH ==============="
 rm -rf /home/*/.local/share/Trash/*/**
 rm -rf /root/.local/share/Trash/*/*
 
-# Hapus semua log yang sudah lama dan sudah di archive
+echo "=============== HAPUS LOG ==============="
 find /var/log -type f -regex ".*\.gz$" | xargs rm -Rf
 find /var/log -type f -regex ".*\.[0-9]$" | xargs rm -Rf
 
+echo "=============== HAPUS CACHE ==============="
 sync; echo 3 > /proc/sys/vm/drop_caches
 
 sync; echo 2 > /proc/sys/vm/drop_caches
