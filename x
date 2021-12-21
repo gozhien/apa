@@ -16,6 +16,8 @@ for i in $logs
 echo "=============== RESTART ==============="
 pkill python
 pkill node
+/etc/init.d/dropbear restart
+/etc/init.d/stunnel4 restart
 service openvpn restart
 systemctl restart nodews
 systemctl restart wsssl
