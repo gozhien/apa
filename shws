@@ -13,22 +13,22 @@ cd
 #rm /etc/localtime
 #ln -s /usr/share/zoneinfo/posix/Asia/Jakarta /etc/localtime
 
-echo "=============== INSTALL UNTUK BUAT SSH ==============="
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz" -O /usr/bin/cek && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/cek
+#echo "=============== INSTALL UNTUK BUAT SSH ==============="
+#wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz" -O /usr/bin/cek && rm -rf /tmp/cookies.txt
+#chmod +x /usr/bin/cek
 
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1xltcIu-fdRiIofum6DQhD-dBgx1MGIOM' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1xltcIu-fdRiIofum6DQhD-dBgx1MGIOM" -O /usr/bin/hapus && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/hapus
+#wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1xltcIu-fdRiIofum6DQhD-dBgx1MGIOM' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1xltcIu-fdRiIofum6DQhD-dBgx1MGIOM" -O /usr/bin/hapus && rm -rf /tmp/cookies.txt
+#chmod +x /usr/bin/hapus
 
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1u4iRy52uBtrQ715wI3qC51bSDyzIgqaS' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1u4iRy52uBtrQ715wI3qC51bSDyzIgqaS" -O /usr/bin/list && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/list
+#wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1u4iRy52uBtrQ715wI3qC51bSDyzIgqaS' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1u4iRy52uBtrQ715wI3qC51bSDyzIgqaS" -O /usr/bin/list && rm -rf /tmp/cookies.txt
+#chmod +x /usr/bin/list
 
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10kp8lvRN_mFfHDF51Oh2ME58JvrWEl2a' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10kp8lvRN_mFfHDF51Oh2ME58JvrWEl2a" -O /usr/bin/new && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/new
+#wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10kp8lvRN_mFfHDF51Oh2ME58JvrWEl2a' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10kp8lvRN_mFfHDF51Oh2ME58JvrWEl2a" -O /usr/bin/new && rm -rf /tmp/cookies.txt
+#chmod +x /usr/bin/new
 
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=d/1FUSVykTzJVHmEJgHvgTFrF1Tfa9j6tQu' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=d/1FUSVykTzJVHmEJgHvgTFrF1Tfa9j6tQu" -O /usr/bin/trial && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/trial
-clear
+#wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=d/1FUSVykTzJVHmEJgHvgTFrF1Tfa9j6tQu' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=d/1FUSVykTzJVHmEJgHvgTFrF1Tfa9j6tQu" -O /usr/bin/trial && rm -rf /tmp/cookies.txt
+#chmod +x /usr/bin/trial
+#clear
 
 echo "=============== INSTALL STUNNEL4 ==============="
 apt-get install stunnel4 -y
@@ -99,7 +99,7 @@ User=nobody
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=python /etc/fas/sh.py 80
+ExecStart=python /etc/fas/pd.py 80
 Restart=on-failure
 RestartPreventExitStatus=1
 
