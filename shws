@@ -74,14 +74,6 @@ wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com
 chmod +x fas.net
 clear
 
-#echo "=============== INSTALL BADVPN ==============="
-#apt -y install unzip && apt -y install cmake && apt -y install make
-#wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
-
-#wget -O /etc/systemd/system/badvpn.service https://gitlab.com/PANCHO7532/scripts-and-random-code/-/raw/master/nfree/badvpn.service && chmod +x /etc/systemd/system/badvpn.service
-#systemctl enable badvpn
-#systemctl start badvpn
-
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
@@ -112,12 +104,22 @@ wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
 chmod +x /usr/bin/x
 clear
 
+echo "=============== INSTALL BADVPN ==============="
+apt -y install unzip && apt -y install cmake && apt -y install make
+wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
+
+wget -O /etc/systemd/system/badvpn.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
+rm -rf badvpn-master master.zip
+apt --purge autoremove unzip make cmake -y
+
 echo "=============== MENJALANKAN SEMUA ==============="
 cd $home
 #apt -y autoremove unzip zip make cmake
 #rm -rf badvpn-master master.zip
 systemctl enable nodews
 systemctl start nodews
+systemctl enable bad
+systemctl start bad
 x
 rm -rf key.pem cert.pem shws
 /etc/init.d/dropbear restart
