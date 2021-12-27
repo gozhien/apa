@@ -16,8 +16,10 @@ for i in $logs
 echo "=============== RESTART ==============="
 pkill python
 pkill node
+systemctl stop bad
 /etc/init.d/dropbear restart
 /etc/init.d/stunnel4 restart
+systemctl restart bad
 service openvpn restart
 systemctl restart nodews
 systemctl restart wsssl
