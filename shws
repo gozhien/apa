@@ -108,7 +108,7 @@ echo "=============== INSTALL BADVPN ==============="
 apt -y install unzip && apt -y install cmake && apt -y install make
 wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
 
-wget -O /etc/systemd/system/badvpn.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
+wget -O /etc/systemd/system/bad.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
 rm -rf badvpn-master master.zip
 apt --purge autoremove unzip make cmake -y
 
