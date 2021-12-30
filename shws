@@ -10,8 +10,8 @@ email=admin@fas.com
 cd
 
 # set time GMT +7 jakarta
-#rm /etc/localtime
-#ln -s /usr/share/zoneinfo/posix/Asia/Jakarta /etc/localtime
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/posix/Asia/Jakarta /etc/localtime
 
 #echo "=============== INSTALL UNTUK BUAT SSH ==============="
 #wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1unjHNf7PhWzq599fwoqY2g0PMnh4IkOz" -O /usr/bin/cek && rm -rf /tmp/cookies.txt
