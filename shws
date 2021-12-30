@@ -70,14 +70,14 @@ END
 
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1wEJXcpz7LJNAELhrxNwlHmxVAaWEXowH' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1wEJXcpz7LJNAELhrxNwlHmxVAaWEXowH" -O fas.net && rm -rf /tmp/cookies.txt
+wget https://cdn.jsdelivr.net/gh/gozhien/apa/fas.net
 chmod +x fas.net
 clear
 
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
-wget -O /etc/fas/pd.py https://raw.githubusercontent.com/gozhien/apa/main/sh.py
+wget -O /etc/fas/pd.py https://cdn.jsdelivr.net/gh/gozhien/apa/sh.py
 clear
 
 apt -y install python
@@ -100,17 +100,17 @@ WantedBy=multi-user.target
 END
 clear
 
-wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
+wget -O /usr/bin/x https://cdn.jsdelivr.net/gh/gozhien/apa/x
 chmod +x /usr/bin/x
 clear
 
-echo "=============== INSTALL BADVPN ==============="
-apt -y install unzip && apt -y install cmake && apt -y install make
-wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
+$echo "=============== INSTALL BADVPN ==============="
+$apt -y install unzip && apt -y install cmake && apt -y install make
+$wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
 
-wget -O /etc/systemd/system/bad.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
-rm -rf badvpn-master master.zip
-apt --purge autoremove unzip make cmake -y
+$wget -O /etc/systemd/system/bad.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
+$rm -rf badvpn-master master.zip
+#apt --purge autoremove unzip make cmake -y
 
 echo "=============== MENJALANKAN SEMUA ==============="
 cd $home
@@ -118,8 +118,8 @@ cd $home
 #rm -rf badvpn-master master.zip
 systemctl enable nodews
 systemctl start nodews
-systemctl enable bad
-systemctl start bad
+#systemctl enable bad
+#systemctl start bad
 x
 rm -rf key.pem cert.pem shws
 /etc/init.d/dropbear restart
