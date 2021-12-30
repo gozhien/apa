@@ -78,6 +78,7 @@ mkdir /etc/fas
 wget -O /etc/fas/sh.py https://raw.githubusercontent.com/gozhien/apa/main/sh.py
 wget -O /etc/fas/fas.net https://raw.githubusercontent.com/gozhien/apa/main/fas.net
 chmod +x /etc/fas/fas.net
+chmod +x /etc/fas/sh.py
 clear
 
 apt -y install python
@@ -118,8 +119,8 @@ cd $home
 #rm -rf badvpn-master master.zip
 systemctl enable nodews
 systemctl start nodews
-systemctl enable bad
-systemctl start bad
+#systemctl enable bad
+$systemctl start bad
 x
 rm -rf key.pem cert.pem sshws
 /etc/init.d/dropbear restart
