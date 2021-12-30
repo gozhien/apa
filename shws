@@ -70,14 +70,14 @@ END
 
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1wEJXcpz7LJNAELhrxNwlHmxVAaWEXowH' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1wEJXcpz7LJNAELhrxNwlHmxVAaWEXowH" -O fas.net && rm -rf /tmp/cookies.txt
-chmod +x fas.net
+wget -O /etc/fas/fas.net https://cdn.jsdelivr.net/gh/gozhien/apa@main/fas.net
+chmod +x /etc/fas/fas.net
 clear
 
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
-wget -O /etc/fas/pd.py https://raw.githubusercontent.com/gozhien/apa/main/sh.py
+wget -O /etc/fas/pd.py https://cdn.jsdelivr.net/gh/gozhien/apa@main/sh.py
 clear
 
 apt -y install python
@@ -100,7 +100,7 @@ WantedBy=multi-user.target
 END
 clear
 
-wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
+wget -O /usr/bin/x https://cdn.jsdelivr.net/gh/gozhien/apa@main/x
 chmod +x /usr/bin/x
 clear
 
