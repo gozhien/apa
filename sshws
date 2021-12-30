@@ -70,14 +70,14 @@ END
 
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-wget -O /etc/fas/fas.net https://cdn.jsdelivr.net/gh/gozhien/apa@main/fas.net
-chmod +x fas.net
 clear
 
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
 wget -O /etc/fas/sh.py https://cdn.jsdelivr.net/gh/gozhien/apa@main/sh.py
+wget -O /etc/fas/fas.net https://cdn.jsdelivr.net/gh/gozhien/apa@main/fas.net
+chmod +x /etc/fas/fas.net
 clear
 
 apt -y install python
