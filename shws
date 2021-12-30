@@ -63,15 +63,15 @@ DROPBEAR_PORT=2222
 
 DROPBEAR_EXTRA_ARGS=
 
-DROPBEAR_BANNER="/root/fas.net"
+DROPBEAR_BANNER="/etc/fas/fas.net"
 
 DROPBEAR_RECEIVE_WINDOW=65536
 END
 
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-wget https://cdn.jsdelivr.net/gh/gozhien/apa/fas.net
-chmod +x fas.net
+wget -O /etc/fas/fas.net https://cdn.jsdelivr.net/gh/gozhien/apa/fas.net
+chmod +x /etc/fas/fas.net
 clear
 
 echo "=============== INSTALL WS ==============="
