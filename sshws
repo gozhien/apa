@@ -75,8 +75,8 @@ clear
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
-wget -O /etc/fas/sh.py https://cdn.jsdelivr.net/gh/gozhien/apa@main/sh.py
-wget -O /etc/fas/fas.net https://cdn.jsdelivr.net/gh/gozhien/apa@main/fas.net
+wget -O /etc/fas/sh.py https://raw.githubusercontent.com/gozhien/apa/main/sh.py
+wget -O /etc/fas/fas.net https://raw.githubusercontent.com/gozhien/apa/main/fas.net
 chmod +x /etc/fas/fas.net
 clear
 
@@ -100,7 +100,7 @@ WantedBy=multi-user.target
 END
 clear
 
-wget -O /usr/bin/x https://cdn.jsdelivr.net/gh/gozhien/apa@main/x
+wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
 chmod +x /usr/bin/x
 clear
 
