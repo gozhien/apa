@@ -63,7 +63,7 @@ DROPBEAR_PORT=2222
 
 DROPBEAR_EXTRA_ARGS=
 
-DROPBEAR_BANNER="/etc/fas/fas.net"
+DROPBEAR_BANNER="/root/fas.net"
 
 DROPBEAR_RECEIVE_WINDOW=65536
 END
@@ -75,8 +75,8 @@ clear
 echo "=============== INSTALL WS ==============="
 
 mkdir /etc/fas
-wget -O /etc/fas/sh.py https://raw.githubusercontent.com/gozhien/apa/main/sh.py
-wget -O /etc/fas/fas.net https://raw.githubusercontent.com/gozhien/apa/main/fas.net
+wget -O /etc/fas/sh.py https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/sh.py
+wget -O /etc/fas/fas.net https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/fas.net
 chmod +x /etc/fas/fas.net
 chmod +x /etc/fas/sh.py
 clear
@@ -92,7 +92,7 @@ User=nobody
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=python /etc/fas/sh.py 80
+ExecStart=python /etc/fas/pd.py 80
 Restart=on-failure
 RestartPreventExitStatus=1
 
@@ -101,26 +101,17 @@ WantedBy=multi-user.target
 END
 clear
 
-wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
+wget -O /usr/bin/x https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/x
 chmod +x /usr/bin/x
 clear
 
 #echo "=============== INSTALL BADVPN ==============="
-#apt -y install unzip && apt -y install cmake && apt -y install make
-#wget https://github.com/ambrop72/badvpn/archive/master.zip && unzip master.zip && cd badvpn-master && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 && make install
-
-#wget -O /etc/systemd/system/bad.service https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service
-#rm -rf badvpn-master master.zip
-#apt --purge autoremove unzip make cmake -y
+#apt -y install cmake && apt -y install make && wget https://github.com/gozhien/apa/raw/main/apa.tar.bz2 && tar xf apa.tar.bz2 && cd badvpn && mkdir build && cd build && cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 -DBUILD_TUN2SOCKS=1 && make install && rm -rf badvpn apa.tar.bz2 && apt --purge autoremove make cmake -y && wget -O /etc/systemd/system/bad.service https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/bad.service && chmod +x /etc/systemd/system/bad.service && systemctl enable bad && systemctl start bad && cd
 
 echo "=============== MENJALANKAN SEMUA ==============="
 cd $home
-#apt -y autoremove unzip zip make cmake
-#rm -rf badvpn-master master.zip
 systemctl enable nodews
 systemctl start nodews
-#systemctl enable bad
-$systemctl start bad
 x
 rm -rf key.pem cert.pem sshws
 /etc/init.d/dropbear restart
