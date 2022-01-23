@@ -1,5 +1,38 @@
 #!/bin/bash
 
+rm -rf /etc/resolv.conf && echo -e "nameserver 2a00:1098:2b::1\nnameserver 2a00:1098:2c::1" > /etc/resolv.conf
+
+country=ID
+state=Bandung
+locality=JawaBarat
+organization=fas
+organizationalunit=fas
+commonname=faried
+email=admin@fas.com
+echo "=============== INSTALL STUNNEL4 ==============="
+apt-get install stunnel4 -y
+rm /etc/stunnel/stunnel.conf
+cat > /etc/stunnel/stunnel.conf <<-END
+pid = /var/run/stunnel.pid
+cert = /etc/stunnel/stunnel.pem
+client = no
+socket = a:SO_REUSEADDR=1
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+[https]
+accept = :::443
+connect = :::80
+
+END
+
+echo "=============== INSTALL SERTIFIKAT ==============="
+rm /etc/stunnel/stunnel.pem
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
+					-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+clear
+
 #==========TANGGAL DIBUAT===========
 #12/19/2021
 #16:04:33 WIB
@@ -85,6 +118,7 @@ wget -O /usr/bin/x https://raw.githubusercontent.com/gozhien/apa/main/x
 chmod +x /usr/bin/x
 
 rm -rf vpnpy
+service stunnel4 restart
 systemctl enable nodews
 systemctl start nodews
 #systemctl enable wsssl
