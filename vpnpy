@@ -40,7 +40,7 @@ clear
 
 #ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
-curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod 755 openvpn-install.sh
 
 clear
