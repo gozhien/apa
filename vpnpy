@@ -13,7 +13,7 @@ chmod 755 openvpn-install.sh
 clear
 
 export APPROVE_IP="y"
-export IPV6_SUPPORT="n"
+export IPV6_SUPPORT="y"
 export PORT_CHOICE="1"
 export PROTOCOL_CHOICE="2"
 export DNS="11"
