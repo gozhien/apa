@@ -23,8 +23,8 @@ systemctl restart bad
 service openvpn restart
 systemctl restart nodews
 systemctl restart wsssl
-#apt-get clean && apt-get autoclean
-#apt-get autoremove -y
+apt-get clean && apt-get autoclean
+apt-get autoremove -y
 
 echo "=============== HAPUS TONG SAMPAH ==============="
 rm -rf /home/*/.local/share/Trash/*/**
