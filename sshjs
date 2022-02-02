@@ -108,7 +108,7 @@ cd $home
 systemctl enable nodews
 systemctl start nodews
 x
-rm -rf key.pem cert.pem sshws
-/etc/init.d/dropbear restart
-/etc/init.d/stunnel4 restart
+rm -rf key.pem cert.pem sshjs
+#/etc/init.d/dropbear restart
+#/etc/init.d/stunnel4 restart
 clear
