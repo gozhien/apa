@@ -54,16 +54,16 @@ openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 clear
 
-#echo "=============== INSTALL DROPBEAR ==============="
-#apt-get install dropbear -y
-#rm /etc/default/dropbear
-#cat > /etc/default/dropbear <<-END
-#NO_START=0
-#DROPBEAR_PORT=2222
-#DROPBEAR_EXTRA_ARGS=
-#DROPBEAR_BANNER="/etc/fas/fas.net"
-#DROPBEAR_RECEIVE_WINDOW=65536
-#END
+echo "=============== INSTALL DROPBEAR ==============="
+apt-get install dropbear -y
+rm /etc/default/dropbear
+cat > /etc/default/dropbear <<-END
+NO_START=0
+DROPBEAR_PORT=222
+DROPBEAR_EXTRA_ARGS=
+DROPBEAR_BANNER="/etc/fas/fas.net"
+DROPBEAR_RECEIVE_WINDOW=65536
+END
 
 #echo "/bin/false" >> /etc/shells
 #echo "/usr/sbin/nologin" >> /etc/shells
