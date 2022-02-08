@@ -27,7 +27,7 @@ echo -e "${RED}$banner${SCOLOR}"
     echo -e "\n${RED}[${YELLOW}!${RED}] ${YELLOW}Downloaded script! THE NEXT TIME\nExclude type only the command ${RED}(${GREEN}slowdns${RED})\n${YELLOW}EVEN IF YOU'RE OFFLINE !${SCOLOR}"
     chmod +x dns
 }
-[[ ! -e $HOME/credenciais ]] && {
+[[ ! -e $HOME/storage/downloads/credenciais ]] && {
     ns=$1
     [[ -z "$ns" ]] && {
         echo -e "\n${RED}COMANDO IMCOMPLETO${SCOLOR}"
@@ -38,13 +38,13 @@ echo -e "${RED}$banner${SCOLOR}"
         echo -e "\n${RED}COMANDO IMCOMPLETO${SCOLOR}"
         exit 0
     }
-    echo -e "$ns\n$chave" > $HOME/credenciais
+    echo -e "$ns\n$chave" > $HOME/storage/downloads/credenciais
 } || {
     perg=$(echo "${SCOLOR}[s/n]: ")
     echo -e "\n${YELLOW}O Script is already configured with a\nServer and is ready"
     read -p "$(echo -e "${GREEN}WANT TO CONTINUE, if yes=s remove=n ?${SCOLOR} [s/n]: ")" -e -i s opc
     [[ "$opc" != @(s|sim|S|SIM) ]] && {
-        rm $HOME/credenciais dns > /dev/null 2>&1
+        rm $HOME/storage/downloads/credenciais dns > /dev/null 2>&1
         rm $PREFIX/bin/slowdns > /dev/null 2>&1
         sed -i '/slowdns/d' $PREFIX/etc/profile > /dev/null 2>&1
         echo -e "\n${RED}SCRIPT REMOVED !${SCOLOR}"
@@ -52,12 +52,12 @@ echo -e "${RED}$banner${SCOLOR}"
         exit 0
     } || {
         unset LD_PRELOAD > /dev/null 2>&1
-        ns=$(sed -n 1p $HOME/credenciais)
-        chave=$(sed -n 2p $HOME/credenciais)
+        ns=$(sed -n 1p $HOME/storage/downloads/credenciais)
+        chave=$(sed -n 2p $HOME/storage/downloads/credenciais)
     }
 }
 echo -ne "\n${RED}[${YELLOW}!${RED}] ${YELLOW}To continue make sure\nIt is only with the ${RED}(${YELLOW}Mobile data${RED})\n${YELLOW}ACTIVATED ${GREEN}ENTER ${YELLOW}TO CONTINUE.. ${SCOLOR}"; read
-read -p "$(echo -e "${GREEN}NETWORK DNS SERVER! ${SCOLOR} [8.8.8.8]: ")" -e -i 8.8.8.8 ra
+read -p "$(echo -e "${GREEN}NETWORK DNS SERVER! ${SCOLOR} [112.215.209.254]: ")" -e -i 112.215.209.254 ra
 
 $HOME/dns -udp $ra:53 -pubkey ${chave} ${ns} 127.0.0.1:2222 > /dev/null 2>&1 &
 echo -e "\n${RED}[${GREEN}√${RED}]${SCOLOR} - ${GREEN}✅SLOWDNS CONNECTED✅${SCOLOR} - ${RED}[${GREEN}√${RED}]\n\n${RED}[${YELLOW}!${RED}] ${YELLOW}Now connect to a VPN app\nOr click on ${GREEN}ENTER ${RED}TO DISCONNECT ${SCOLOR}"; read
