@@ -19,11 +19,12 @@ echo -e "${RED}$banner${SCOLOR}"
     yes| termux-setup-storage > /dev/null 2>&1
     unset LD_PRELOAD > /dev/null 2>&1
     cd $HOME
+    pkg install wget
     mv slowdns $PREFIX/bin/slowdns
     chmod +x $PREFIX/bin/slowdns
     [[ $(grep -c 'slowdns' $PREFIX/etc/profile) == '0' ]] && echo 'slowdns' >> $PREFIX/etc/profile
     echo -e "\n${GREEN}DOWNLOADING SCRIPT PLEASE WAIT! ${SCOLOR}"
-    curl -sO https://github.com/gozhien/apa/raw/main/dns > /dev/null 2>&1
+    wget https://github.com/gozhien/apa/raw/main/dns > /dev/null 2>&1
     echo -e "\n${RED}[${YELLOW}!${RED}] ${YELLOW}Downloaded script! THE NEXT TIME\nExclude type only the command ${RED}(${GREEN}slowdns${RED})\n${YELLOW}EVEN IF YOU'RE OFFLINE !${SCOLOR}"
     chmod +x dns
 }
