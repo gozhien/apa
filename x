@@ -29,6 +29,8 @@ apt-get autoremove -y
 echo "=============== HAPUS TONG SAMPAH ==============="
 rm -rf /home/*/.local/share/Trash/*/**
 rm -rf /root/.local/share/Trash/*/*
+rm -rf /usr/share/man/* 
+rm -f /var/log/* /var/log/*/*
 
 echo "=============== HAPUS LOG ==============="
 find /var/log -type f -regex ".*\.gz$" | xargs rm -Rf
