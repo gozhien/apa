@@ -91,7 +91,7 @@ cat > /usr/local/etc/config.yml <<-END
 verbose: 0
 listen:
   # salome
-    - target_host: 127.0.0.1
+  - target_host: 127.0.0.1
     target_port: 9990
     listen_port: $de
 END
