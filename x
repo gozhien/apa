@@ -23,6 +23,14 @@ systemctl restart bad
 service openvpn restart
 systemctl restart nodews
 systemctl restart wsssl
+systemctl stop stunnel5
+systemctl enable stunnel5
+systemctl start stunnel5
+systemctl restart stunnel5
+service stunnel5 stop
+service stunnel5 enable
+service stunnel5 start
+service stunnel5 restart
 apt-get clean && apt-get autoclean
 apt-get autoremove -y
 
