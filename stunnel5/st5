@@ -30,18 +30,7 @@ cd
 #chmod +x /usr/bin/trial
 #clear
 
-apt-get install certbot -y
-apt-get install gcc g++ build-essential libreadline-dev zlib1g-dev linux-headers-generic libssl-dev unzip -y
-wget -q -O stunnel5.zip "https://github.com/gozhien/apa/raw/main/stunnel5/stunnel5.zip"
-unzip -o stunnel5.zip
-cd /root/stunnel
-chmod +x configure
-./configure
-make
-make install
-cd /root
-rm -r -f stunnel
-rm -f stunnel5.zip
+apt-get install certbot -y && apt-get install gcc g++ build-essential libreadline-dev zlib1g-dev libssl-dev unzip -y && wget -q -O stunnel5.zip "https://github.com/fisabiliyusri/Mantap/raw/main/stunnel5/stunnel5.zip" && unzip -o stunnel5.zip && cd /root/stunnel && chmod +x configure && ./configure && make && make install && cd /root && rm -r -f stunnel && rm -f stunnel5.zip && mkdir -p /etc/stunnel5 && chmod 644 /etc/stunnel5
 
 # Download Config Stunnel5
 cat > /etc/stunnel5/stunnel5.conf <<-END
@@ -73,19 +62,17 @@ WantedBy=multi-user.target
 END
 
 # Service Stunnel5 /etc/init.d/stunnel5
-wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/gozhien/apa/main/stunnel5/stunnel5.init"
+wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/stunnel5/stunnel5.init"
+
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
+					-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
+cat key.pem cert.pem >> /etc/stunnel5/stunnel.pem
 
 # Ubah Izin Akses
 chmod 600 /etc/stunnel5/stunnel5.pem
 chmod +x /etc/init.d/stunnel5
 cp /usr/local/bin/stunnel /usr/local/bin/stunnel5
-
-echo "=============== INSTALL SERTIFIKAT ==============="
-rm /etc/stunnel/stunnel.pem
-openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
-					-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
-cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 clear
 
 echo "=============== INSTALL DROPBEAR ==============="
