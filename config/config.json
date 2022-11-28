@@ -1,0 +1,39 @@
+{
+    "log": {
+        "loglevel": "none"
+    },
+    "routing": {
+        "domainStrategy": "AsIs"
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 80,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "e3444bdd-fbd6-47e6-99c6-b3ce86910a3b"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+            "wsSettings": {
+            "path": "/worryfree"
+               }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+}
