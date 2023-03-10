@@ -22,6 +22,7 @@ systemctl stop bad
 systemctl restart bad
 service openvpn restart
 systemctl restart nodews
+systemctl restart dnstt
 systemctl restart wsssl
 systemctl stop stunnel5
 systemctl enable stunnel5
@@ -33,6 +34,7 @@ service stunnel5 start
 service stunnel5 restart
 apt-get clean && apt-get autoclean
 apt-get autoremove -y
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
 
 echo "=============== HAPUS TONG SAMPAH ==============="
 rm -rf /home/*/.local/share/Trash/*/**
