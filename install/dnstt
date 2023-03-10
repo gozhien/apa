@@ -1,0 +1,58 @@
+#!/bin/bash
+wget -O /usr/local/bin/dnstt-server https://github.com/gozhien/ih_apa_ya/raw/main/dnstt-server
+wget -O /usr/local/bin/server.pub https://raw.githubusercontent.com/gozhien/ih_apa_ya/main/server.pub
+wget -O /usr/local/bin/server.key https://raw.githubusercontent.com/gozhien/ih_apa_ya/main/server.key
+
+clear
+
+echo "============= SETTINGS ============"
+sleep 0.5
+read -p "DOMAIN NS : " domain
+sleep 0.5
+echo "Procesing to server..."
+read -p "PORT SSH : " port
+sleep 0.5
+echo "Procesing to server..."
+
+echo "============= SETTINGS DNSTT ============"
+sleep 0.5
+chmod +x /usr/local/bin/dnstt-server
+
+cat > /etc/systemd/system/dnstt.service <<-DNSTT
+[Unit]
+Description=Daemonize DNSTT Tunnel Server
+Wants=network.target
+After=network.target
+[Service]
+ExecStart=/usr/local/bin/dnstt-server -udp :5300 -privkey-file /usr/local/bin/server.key $domain 127.0.0.1:$port
+Restart=always
+RestartSec=3
+[Install]
+WantedBy=multi-user.target
+DNSTT
+
+echo "============= SETTINGS DROPBEAR ============"
+sleep 0.5
+apt install dropbear -y
+rm -fv /etc/default/dropbear
+cat > /etc/default/dropbear <<-DROP
+NO_START=0
+DROPBEAR_PORT=$port
+DROPBEAR_EXTRA_ARGS=""
+DROPBEAR_BANNER=""
+DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
+DROPBEAR_RECEIVE_WINDOW=65536
+DROP
+
+
+clear
+systemctl enable dnstt
+systemctl start dnstt
+
+wget -O /usr/bin/x https://proxy.freecdn.workers.dev/?url=https://raw.githubusercontent.com/gozhien/apa/main/x
+chmod +x /usr/bin/x
+x
+iptables-save > /etc/iptables/rules.v4
+clear
