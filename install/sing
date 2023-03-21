@@ -1,0 +1,80 @@
+#!/bin/bash
+mkdir /etc/sing-box
+wget -O /etc/sing-box/xray.key https://github.com/gozhien/ih_apa_ya/raw/main/xray.key
+wget -O /etc/sing-box/xray.pem https://github.com/gozhien/ih_apa_ya/raw/main/xray.pem
+bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install
+
+rm /usr/local/etc/sing-box/config.json
+cat > /usr/local/etc/sing-box/config.json <<-END
+{
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 1010,
+      "tcp_fast_open": false,
+      "sniff": false,
+      "sniff_override_destination": false,
+      "domain_strategy": "prefer_ipv6",
+      "proxy_protocol": false
+    },
+    {
+      "type": "vmess",
+      "tag": "vmess-tls",
+      "listen": "::",
+      "listen_port": 443,
+      "tcp_fast_open": false,
+      "sniff": false,
+      "sniff_override_destination": false,
+      "domain_strategy": "prefer_ipv6",
+      "proxy_protocol": false,
+      "users": [
+        {
+          "name": "franzkafka",
+          "uuid": "77eced5b-64d3-4131-ae48-100d15018b5e",
+          "alterId": 0
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "servername.com",
+        "alpn": [
+          "http/1.1",
+          "h2"
+        ],
+        "certificate_path": "/etc/sing-box/xray.pem",
+        "key_path": "/etc/sing-box/xray.key"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "vmess-ntls",
+      "listen": "::",
+      "listen_port": 80,
+      "tcp_fast_open": false,
+      "sniff": false,
+      "sniff_override_destination": false,
+      "domain_strategy": "prefer_ipv6",
+      "proxy_protocol": false,
+      "users": [
+        {
+          "name": "franzkafka",
+          "uuid": "77eced5b-64d3-4131-ae48-100d15018b5e",
+          "alterId": 0
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": "/vmess"
+      }
+    }
+  ]
+}
+END
+sing-box restart
+clear
