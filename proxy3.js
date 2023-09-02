@@ -56,7 +56,7 @@ const server = net.createServer();
 server.on('connection', function(socket) {
     var packetCount = 0;
     //var handshakeMade = false;
-    socket.write("HTTP/1.1 101 Switching Protocols\r\nContent-Length: 1048576000000\r\n\r\n");
+    socket.write("HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\n\r\n");
     console.log("[INFO] - Connection received from " + socket.remoteAddress + ":" + socket.remotePort);
     var conn = net.createConnection({host: dhost, port: dport});
     socket.on('data', function(data) {
