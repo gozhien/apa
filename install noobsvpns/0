@@ -10,7 +10,7 @@ git clone https://github.com/noobz-id/noobzvpns.git && cd noobzvpns && ./install
 
 clear
 
-noobzvpns --add-user $user $pass
+noobzvpns add -p $pass -e 0 -d 0 -b 0 $user
 
 systemctl enable noobzvpns
 systemctl start noobzvpns
