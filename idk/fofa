@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# File HTML input
+html_file="/sdcard/download/Reqable/result.html""
+
+# Ekstrak IP dan port dari tag <a href="http://IP:port">
+ip_port=$(grep -oP '(?<=<a href="http://)[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+(:[0-9]+)?' "$html_file")
+
+# Output hasil ekstraksi
+echo "IP dan Port ditemukan: $ip_port"
+
+# Simpan hasilnya ke file sementara '2'
+echo "$ip_port" > 2
+
+# Inisialisasi file hasil
+> hasil
+
+# Cek apakah proxy hidup menggunakan curl
+echo "Memeriksa status proxy..."
+while IFS= read -r line; do
+    ip=$(echo "$line" | cut -d':' -f1)   # Ambil IP
+    port=$(echo "$line" | cut -d':' -f2) # Ambil Port (jika ada)
+
+    # Tambahkan port default 80 jika port tidak ditemukan
+    if [[ -z "$port" ]]; then
+        port=80
+    fi
+
+    # Uji proxy menggunakan curl dengan timeout 3 detik
+    echo -n "Memeriksa $ip:$port... "
+    response=$(curl -s --max-time 3 --proxy "$ip:$port" http://ipinfo.io)
+
+    # Cek apakah response valid (berisi informasi IP)
+    if echo "$response" | grep -q '"ip"'; then
+        country=$(echo "$response" | grep -o '"country": "[^"]*' | awk -F': "' '{print $2}')
+        org=$(echo "$response" | grep -o '"org": "[^"]*' | awk -F': "' '{print $2}')
+
+        if [[ -n "$country" && -n "$org" ]]; then
+            # Hapus bagian 'ASxxxxx' dari org jika ada
+            org=$(echo "$org" | sed 's/AS[0-9]* //g')
+
+            # Ganti spasi dengan %20 dan simbol '|' dengan %7C
+            org_escaped=$(echo "$org" | sed 's/ /%20/g; s/|/%7C/g')
+
+            echo "Proxy HIDUP"
+            echo "http://$ip:$port/#$country%7C$org_escaped" >> hasil
+        fi
+    else
+        echo "Proxy MATI"
+    fi
+done < 2
+
+# Hapus file sementara '2'
+rm -f 2
+echo "File '2' telah dihapus."
+echo "Proses selesai. Proxy hidup disimpan di file 'hasil' dalam format http://ip:port/#country%7Corg."
